@@ -1,0 +1,31 @@
+﻿@model DisasterAlleviationFoundation.Models.VolunteerTask
+
+@{
+    ViewData["Title"] = "Sign Up for Volunteer Task";
+}
+
+<h1>Sign Up for Volunteer Task</h1>
+
+<h3>@Model.Title</h3>
+<hr />
+
+<div class="alert alert-info">
+    <h5>Task Details:</h5>
+    <p><strong>Description:</strong> @Model.Description</p>
+    <p><strong>Location:</strong> @Model.Location</p>
+    <p><strong>Date:</strong> @Model.TaskDate.ToString("yyyy-MM-dd HH:mm")</p>
+    <p><strong>Volunteers Needed:</strong> @Model.CurrentVolunteers / @Model.RequiredVolunteers</p>
+</div>
+
+<div class="alert alert-warning">
+    <p>Are you sure you want to sign up for this volunteer task?</p>
+    <p><strong>Note:</strong> You can cancel your sign-up later if your plans change.</p>
+</div>
+
+<form asp-action="SignUp" method="post">
+    <input type="hidden" name="volunteerTaskId" value="@Model.Id" />
+    <div class="form-group">
+        <input type="submit" value="Yes, Sign Me Up!" class="btn btn-success" />
+        <a asp-action="Tasks" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

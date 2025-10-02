@@ -1,0 +1,70 @@
+﻿@model DisasterAlleviationFoundation.Models.VolunteerTask
+
+@{
+    ViewData["Title"] = "Task Details";
+}
+
+<h1>Task Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+        <dt class="col-sm-2">
+            Task Date
+        </dt>
+        <dd class="col-sm-10">
+            @Model.TaskDate.ToString("yyyy-MM-dd HH:mm")
+        </dd>
+        <dt class="col-sm-2">
+            Required Volunteers
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RequiredVolunteers)
+        </dd>
+        <dt class="col-sm-2">
+            Current Volunteers
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CurrentVolunteers)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-sm-10">
+            <span class="badge @(Model.Status == "Open" ? "bg-success" : Model.Status == "Filled" ? "bg-warning" : "bg-secondary")">
+                @Html.DisplayFor(model => model.Status)
+            </span>
+        </dd>
+        <dt class="col-sm-2">
+            Created At
+        </dt>
+        <dd class="col-sm-10">
+            @Model.CreatedAt.ToString("yyyy-MM-dd HH:mm")
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (Model.Status == "Open")
+    {
+        <a asp-action="SignUp" asp-route-id="@Model.Id" class="btn btn-success">Sign Up</a>
+    }
+    <a asp-action="Tasks" class="btn btn-secondary">Back to List</a>
+</div>

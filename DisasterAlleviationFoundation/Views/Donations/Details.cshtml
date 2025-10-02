@@ -1,0 +1,61 @@
+﻿@model DisasterAlleviationFoundation.Models.GoodsDonation
+
+@{
+    ViewData["Title"] = "Donation Details";
+}
+
+<h1>Donation Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Donor Name
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.IsAnonymous ? "Anonymous" : Model.DonorName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NumberOfItems)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfItems)
+        </dd>
+        <dt class="col-sm-2">
+            Donation Date
+        </dt>
+        <dd class="col-sm-10">
+            @Model.DonationDate.ToString("yyyy-MM-dd HH:mm")
+        </dd>
+        <dt class="col-sm-2">
+            Anonymous Donation
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.IsAnonymous ? "Yes" : "No")
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-sm-10">
+            <span class="badge @(Model.Status == "Pending" ? "bg-warning" : "bg-success")">
+                @Html.DisplayFor(model => model.Status)
+            </span>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

@@ -1,0 +1,58 @@
+﻿@model DisasterAlleviationFoundation.Models.GoodsDonation
+
+@{
+    ViewData["Title"] = "Delete Donation";
+}
+
+<h1>Delete Donation</h1>
+
+<h3>Are you sure you want to delete this donation?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Donor Name
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.IsAnonymous ? "Anonymous" : Model.DonorName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NumberOfItems)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfItems)
+        </dd>
+        <dt class="col-sm-2">
+            Donation Date
+        </dt>
+        <dd class="col-sm-10">
+            @Model.DonationDate.ToString("yyyy-MM-dd")
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-sm-10">
+            <span class="badge @(Model.Status == "Pending" ? "bg-warning" : "bg-success")">
+                @Html.DisplayFor(model => model.Status)
+            </span>
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>

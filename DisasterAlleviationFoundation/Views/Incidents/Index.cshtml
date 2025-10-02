@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DisasterAlleviationFoundation.Models.DisasterIncident>
+
+@{
+    ViewData["Title"] = "Disaster Incidents";
+}
+
+<h1>Disaster Incidents</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Report New Incident</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Start Date</th>
+            <th>Status</th>
+            <th>Reported On</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.Location)</td>
+                <td>@item.StartDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <span class="badge @(item.Status == "Active" ? "bg-warning" : "bg-success")">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </span>
+                </td>
+                <td>@item.ReportedOn.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

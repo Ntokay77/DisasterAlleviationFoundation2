@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Disaster Alleviation Foundation";
+}
+
+<div class="container mt-5">
+
+    <!-- Hero Section -->
+    <div class="text-center py-5 bg-primary text-white rounded shadow-lg">
+        @if (User.Identity.IsAuthenticated)
+        {
+        <h1 class="display-4 fw-bold">Welcome back, @User.Identity.Name!</h1>
+        <p class="lead">Thank you for being part of the Disaster Alleviation Foundation. Get started by reporting incidents, donating resources, or volunteering.</p>
+        }
+        else
+        {
+        <h1 class="display-3 fw-bold">🌍 Welcome to the Disaster Alleviation Foundation</h1>
+        <p class="lead mt-3">
+            Together, we can make a difference. <br />
+            Register or Login to report incidents, donate resources, and volunteer for disaster relief.
+        </p>
+        <div class="mt-4">
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-light btn-lg me-3 shadow">Register</a>
+            <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-light btn-lg shadow">Login</a>
+        </div>
+        }
+    </div>
+
+    <!-- Features with Icons -->
+    <div class="mt-5 text-center">
+        <h3 class="fw-bold mb-4">What You Can Do</h3>
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-md-3">
+                <div class="p-4 rounded shadow-sm border h-100">
+                    <i class="bi bi-exclamation-triangle-fill display-1 text-primary mb-3"></i>
+                    <h5 class="fw-bold">Report Incidents</h5>
+                    <p>Submit details about disasters in your area so our teams can respond quickly.</p>
+                    <a href="@Url.Action("Create", "Incidents")" class="btn btn-primary">Report Now</a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="p-4 rounded shadow-sm border h-100">
+                    <i class="bi bi-gift-fill display-1 text-success mb-3"></i>
+                    <h5 class="fw-bold">Donate Resources</h5>
+                    <p>Contribute food, clothing, or medical supplies to help affected communities.</p>
+                    <a href="@Url.Action("Create", "Donations")" class="btn btn-success">Donate Now</a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="p-4 rounded shadow-sm border h-100">
+                    <i class="bi bi-people-fill display-1 text-warning mb-3"></i>
+                    <h5 class="fw-bold">Volunteer</h5>
+                    <p>Join our team and support disaster relief efforts in your community.</p>
+                    <a href="@Url.Action("Tasks", "Volunteer")" class="btn btn-warning text-white">Volunteer Now</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

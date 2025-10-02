@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DisasterAlleviationFoundation.Models.GoodsDonation>
+
+@{
+    ViewData["Title"] = "Goods Donations";
+}
+
+<h1>Goods Donations</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Make New Donation</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Donor Name</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Items</th>
+            <th>Donation Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(item.IsAnonymous ? "Anonymous" : item.DonorName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.NumberOfItems)</td>
+                <td>@item.DonationDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <span class="badge @(item.Status == "Pending" ? "bg-warning" : "bg-success")">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </span>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
